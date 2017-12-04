@@ -10,7 +10,7 @@ import numpy as np
 
 class Neuron(object):
     
-    """
+    """ 
     Neuron:
     =======
     Ein Neuron mit mehreren Inputs (inp,ios[[]]).
@@ -28,7 +28,7 @@ class Neuron(object):
    
     def __func(self,x):
         """TODO sigmoid durch softmax ersetzen ( bessere Funktion ) """
-        return 1/1 + np.power(np.e,x)
+        return 1/(1 + np.power(np.e,x))
     
     def __sum(self):
         sum = float()
@@ -36,12 +36,12 @@ class Neuron(object):
             sum += self.__ios[0][i]
         return sum
     
-    def __get_result():
+    def __get_result(self):
         return self.__func(self.__sum())
         
-    def _get_outputs():
+    def _get_outputs(self):
         return self.__ios[1]
     
     def run(self):
         """Einmal aktiviert."""
-         self.ios[1] = self.__get_result()
+        self.__ios[1] = self.__get_result()
