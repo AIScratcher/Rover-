@@ -22,10 +22,9 @@ class Neuron(object):
         
         self.__ios = np.zeros((inp,1),dtype=np.float32) #self.__ios[0] = Inputs
         
-    def _set_inputs(self,i):
-        for _ in range(0,len(self.__ios[0])):
-            self.__ios[_] = i[_]
-   
+   def _set_input(self,v,i):
+       self.__ios[0][i] = v
+       
     def __func(self,x):
         """TODO sigmoid durch softmax ersetzen ( bessere Funktion ) """
         return 1/(1 + np.power(np.e,x))
