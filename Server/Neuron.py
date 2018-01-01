@@ -15,18 +15,24 @@ class Neuron(object):
     =======
     Ein Neuron mit mehreren Inputs (inp,ios[[]]).
     Und mehreren Outputs (outp,ios)
-    
-    
+
+    Funktionen:
+        __init__: 
     """
-    def __init__(self,inp):
+    def __init__(self,inp,outp):
+        self.__ios = np.zeros((inp,1),dtype=np.object) #self.__ios[0] = Inputs  self.__ios[1] = Outputs
         
-        self.__ios = np.zeros((inp,1),dtype=np.float32) #self.__ios[0] = Inputs
-        
+    def set_input_connection(self,connection,index):
+        self.__ios[1][index] = connection
+        self.__ios[1][index]._set_input = self
+        self.__ios[]
+
    def _set_input(self,v,i):
        self.__ios[0][i] = v
        
     def __func(self,x):
-        """TODO sigmoid durch softmax ersetzen ( bessere Funktion ) """
+        #TODO sigmoid durch softmax ersetzen ( bessere Funktion ) 
+        #Wikipedia: www.wikipedia.org/softmax-function
         return 1/(1 + np.power(np.e,x))
     
     def __sum(self):
@@ -42,5 +48,5 @@ class Neuron(object):
         return self.__ios[1]
     
     def run(self):
-        """Einmal aktiviert."""
+        #Einmal aktiviert.
         self.__ios[1] = self.__get_result()
