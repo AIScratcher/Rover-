@@ -27,7 +27,8 @@ class Connection (object):
     Argumente:
     self: Objektinstanz
     Tut:
-    holt den Wert vom Input-Neuron multipliziert den mit seinem Weigth 
+    holt den Wert vom Input-Neuron multipliziert den mit seinem Weigth  und gibt ihm 
+    dem 
 
     """
     def __init__(self,inp = "",outp =  "",oindex,net):
