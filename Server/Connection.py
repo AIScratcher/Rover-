@@ -1,4 +1,8 @@
+
+
 import numpy as np
+
+
 
 class Connection (object):
     """
@@ -28,7 +32,7 @@ class Connection (object):
     """
     def __init__(self,inp = "",outp =  "",oindex,net):
         if inp != "" and outp != "":
-            self.__net = net;
+            self.__net = net
             self.__weigth = 0
             self.__input = inp
             self.__output = outp
