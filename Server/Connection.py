@@ -33,7 +33,9 @@ class Connection (object):
             self.__input = inp
             self.__output = outp
             self.__oindex = oindex
-            self.__last_activation = net.getTime();
+            self.__last_activation = net.getTime()
+        else:
+            
     
     def _connect_(self):
         o = self.__input._get_outputs()

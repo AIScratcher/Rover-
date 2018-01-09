@@ -32,7 +32,7 @@ class Neuron(object):
        
     def __func(self,x):
         #TODO sigmoid durch softmax ersetzen ( bessere Funktion ) 
-        #Wikipedia: www.wikipedia.org/softmax-function
+        #Wikipedia: https://en.wikipedia.org/wiki/Softmax_function
         return 1/(1 + np.power(np.e,x))
     
     def __sum(self):
