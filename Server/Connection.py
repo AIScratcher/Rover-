@@ -16,8 +16,8 @@ class Connection (object):
     Funktionen:
     __init__(self, inp, outp, oindex):
     Argumente:
-    inp = Das Inputneuron zur Verbindung ( wird in __input gespeichert )
-    outp = Das Outputneuron zur Verbindung ( wird in __output gespeichert )
+    inp = Das Inputneuron zur Verbindung ( wird in __input gespeichert ) #Wenn beim __init__ noch kein Input definiert ist wird input = ""
+    outp = Das Outputneuron zur Verbindung ( wird in __output gespeichert ) #Wenn beim __init__ noch kein  Output definiert ist wird output = ""
     oindex = Der Index der Verbindung im Outputneuron ( siehe Neuron._set_input )
     net = Eigenes Neuronales Netz
     Tut:
@@ -31,14 +31,26 @@ class Connection (object):
     dem 
 
     """
-    def __init__(self,inp = "",outp =  "",oindex,net):
-        if inp != "" and outp != "":
-            self.__net = net
-            self.__weigth = 0
+    def __init__(self,net,oindex = "",inp = "",outp =  ""):# inp,outp Fallback
+
+        self.__net = net
+        self.__weigth = 0
+        self.__oindex = oindex
+        self.__last_activation = net.getTime()
+        self.__input = inp
+        self.__output = outp
+    
+    def _set_input(self,inp):
+        if self.__input == "":
             self.__input = inp
+        else:
+            return -1 #Input can't change twice
+    def _set_output(self,outp,oindex):
+        if self.__output == "":
             self.__output = outp
             self.__oindex = oindex
-            self.__last_activation = net.getTime();
+        else:
+            return -1 #Output can't change twice too
     
     def _connect_(self):
         o = self.__input._get_outputs()
