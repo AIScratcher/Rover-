@@ -15,16 +15,16 @@ class Neuron(object):
     """ 
     Neuron:
     =======
-    Ein Neuron mit mehreren Inputs (inp,ios[[]]).
-    Und mehreren Outputs (outp,ios)
-
-    Funktionen:
+    A Neuron with Inputs and Outputs. 
+    Storages in self.__ios.
+    
+      Functions:
         __init__: 
             self: Object
-            inp: Anzahl an Inputs
-            outp: Anzahl an Outputs
+            inp: Index of Input-Connections
+            outp: Index of Output-Connections
     """
-    def __init__(self,inp,outp):#Tested
+    def __init__(self,inp,outp):#Tested!
         io = [[],[]]
         for i in range(0,inp):
             io[0].append(0)
@@ -33,17 +33,29 @@ class Neuron(object):
         self.__ios = np.array(io,dtype=np.object) 
         
         
-    def set_input_connection(self,connection,index):
+    def set_input_connection(self,connection,index):#Tested!
         self.__ios[0][index] = connection
+<<<<<<< HEAD
         self.__ios[0][index]._set_input(self)
 
     def set_input(self,v,con):
         
     def __func(self,x):
+=======
+        self.__ios[0][index]._set_output(self,index)
+        print(self.__ios[0][index])
+
+    def _set_input(self,v,i):#Tested!
+       self.__ios[0][i] = v
+       self.run()
+       print(self.__ios)
+       
+    def _func(self,x):#__func
+>>>>>>> 25d34eaaca2adaaae8185779b1a3e319ca877c3b
         #TODO sigmoid durch softmax ersetzen ( bessere Funktion ) 
         #Wikipedia: https://en.wikipedia.org/wiki/Softmax_function
         #YT: https://www.youtube.com/watch?v=xRJCOz3AfYY&list=PL2-dafEMk2A7mu0bSksCGMJEmeddU_H4D
-        return 1/(1 + np.power(np.e,x))
+        return x/(np.sqrt(1 + x**2))
     
     def __sum(self):
         sum = float()

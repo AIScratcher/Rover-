@@ -28,3 +28,15 @@ class NeuronalNetwork(object):
     def getTime(self):
         
             
+        #Start Iterations
+        self.__time = int(0)
+        while(True): 
+            self.run()
+            self.__time += 1
+    
+    def getTime(self):
+        return self.__time
+    
+    def run(self):
+        #Code runs evry iteration
+        
