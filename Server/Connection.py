@@ -1,49 +1,69 @@
+
+
 import numpy as np
+import Neuron 
+import NeuronalNetwork
+
 
 class Connection (object):
     """
 
     Connection
     ==========
-    Variabeln:
-    __input = Inputneuron zur Verbindung
-    __output = Outputneuron zur Verbindung
-    self = Objekt-Instanz
-    Funktionen:
+    variables:
+    __input = Inputneuron for the Connection
+    __output = Outputneuron for the Connection
+    self = Object 
+    function:
     __init__(self, inp, outp, oindex):
-    Argumente:
-    inp = Das Inputneuron zur Verbindung ( wird in __input gespeichert )
-    outp = Das Outputneuron zur Verbindung ( wird in __output gespeichert )
-    oindex = Der Index der Verbindung im Outputneuron ( siehe Neuron._set_input )
+    arguments:
+    inp = the Input Neuron ( storage in __input)
+    outp = the Output Neuron ( storage in __output )
+    oindex = Index in the output.__ios[0]
     net = Eigenes Neuronales Netz
-    Tut:
-    Initalisiert die Variablen 
+    Does:
+    Init the Variables.
 
     _connect_():
-    Argumente:
-    self: Objektinstanz
-    Tut:
-    holt den Wert vom Input-Neuron multipliziert den mit seinem Weigth 
+    arguments:
+    self: Object 
+    Does:
+    Get the Value and give them the output.
 
     """
-    def __init__(self,inp = "",outp =  "",oindex,net):
-        if inp != "" and outp != "":
-            self.__net = net;
-            self.__weigth = 0
-            self.__input = inp
-            self.__output = outp
-            self.__oindex = oindex
-            self.__last_activation = net.getTime()
-        else:
+    def __init__(self,net,inp = -1,outp = -1,oindex = -1):
+       self.__net = net
+       self.__index = oindex
+       self.__input = inp
+       self.__output = outp
+       
+       if not(inp == -1,output == -1):
+           self.isWorking = True
+       else:
+           self.isWorking = False
             
+    def _set_input(self,inp):
+        self.__input = inp
+        if not (self.__output == -1):
+            self.isWorking = True
+    def _set_output(self,outp):
+        self.__output = outp
+        if not (self.__input == -1):
+            self.isWorking = True
     
     def _connect_(self):
-        o = self.__input._get_outputs()
-        #Update des Weigths
-        self.__w -= (net.getTime - self.__last_activation)
-        self.__last_activation = net.getTime()
-        self.__w += 1
+        if self.isWorking == True:
+            o = self.__input._get_outputs()
+        
+            #Update of the Weigths
+            self.__w -= (net.getTime - self.__last_activation)
+            self.__last_activation = net.getTime()
+            self.__w += 1
 
-        o *= self.__w 
-        self.__output._set_input(o,self.__oindex)#Input setzen.
-        self.__output.run() # Neuron Aktivieren
+            o *= self.__w 
+            self.__output._set_input(o,self.__oindex)#Input setzen.
+            self.__output.activate(self.__oindex) # Neuron Aktivieren
+        
+
+        
+        

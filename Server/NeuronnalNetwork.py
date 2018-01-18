@@ -1,30 +1,30 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Mon Dec  4 16:58:13 2017
-
-@author: SFZ_Laptop_012
-"""
 
 import numpy as np
 
 class NeuronalNetwork(object):
 
-	"""
-	Neuronen sind nur Werte und immer wenn sie aktiviert werden
-	führen sie die Funktion neuron(siehe uneten)
 
 	"""
+	INIT-PLAN:
+        1.Build the Neurons
+        2.Connect them through the Connections
+        3.Start the Run.
+	"""
 
-
-
-    #Evrything a Neuron does if it runs once. 
-    def neuron(inp):
-    	res = 0;
-    	for i in range(0,len(inp)):
-    		res += inp[i]
-    	res = 1/(1 + np.power(np.e,x))
-    	return res
 
 
     
+
+
+
+    
+
+    def __init__(inputs_shape,outputs_shape):
+
+            
+        for i in range(0,inputs_shape):
+    
+    def getTime(self):
+        
             
