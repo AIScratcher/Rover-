@@ -6,24 +6,23 @@ class NeuronalNetwork(object):
 
 
 	"""
-	INIT-PLAN:
-        1.Build the Neurons
-        2.Connect them through the Connections
-        3.Start the Run.
+    INIT-Plan:
+        1.Build the Neurons 
+        2.Define Input and Output Neurons
+        3.Connect from the Input to the Output over (Number of Neurons/Input Neurons)
+    RUN-Plan:
+        If a Connection 
 	"""
 
 
 
-    
 
-
-
-    
-
-    def __init__(inputs_shape,outputs_shape):
-
+    def __init__(self,neurons,inputs,outputs): 
+        #neurons: Number of Neurons  in the net
+        #inputs: The Number of Neurons who will be inputs (a part of neurons)
+        #outputs: The Number of Neuron who will be outputs (a part of neurons)
             
-        for i in range(0,inputs_shape):
+        
     
     def getTime(self):
         

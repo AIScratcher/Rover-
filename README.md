@@ -1,4 +1,4 @@
-<h1> Die Branches [ Vorschlag ]</h1>
+<h1> Die Branches </h1>
 <h3> Es gibt 4 Branches die wir nutzen: </h3>
 <ol>
 <li> central </li>
