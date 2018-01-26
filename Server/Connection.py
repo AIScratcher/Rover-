@@ -2,12 +2,12 @@
 
 import numpy as np
 import Neuron 
-import NeuronalNetwork
+#import NeuronnalNetwork
 
 
 class Connection (object):
+    
     """
-
     Connection
     ==========
     variables:
@@ -50,11 +50,11 @@ class Connection (object):
        else:
            self.isWorking = False
             
-    def _set_input(self,inp): #If the input (Neuron Object) is -1 set self.__input = inp
+    def set_input(self,inp): #If the input (Neuron Object) is -1 set self.__input = inp
         self.__input = inp
         if not (self.__output == -1):
             self.isWorking = True
-    def _set_output(self,outp):
+    def set_output(self,outp):
         self.__output = outp
         if not (self.__input == -1):
             self.isWorking = True
@@ -63,7 +63,7 @@ class Connection (object):
     
     def _connect_(self): #A Data transfer between IN- and OUTPUT
         if self.isWorking == True:
-            o = self.__input._get_outputs()
+            o = self.__input.get_outputs()
         
             #Update of the Weigths
             self.__w -= (self.__net.getTime - self.__last_activation)
@@ -71,9 +71,10 @@ class Connection (object):
             self.__w += 1
 
             o *= self.__w 
-            self.__output._set_input(o,self.__oindex)#Input setzen.
+            self.__output.set_input(o,self.__oindex)#Input setzen.
             self.__output.activate(self.__oindex) # Neuron Aktivieren
         
 
+        
         
         

@@ -8,16 +8,16 @@ class Neuron(object);
 """
 
 import numpy as np
-import Connenction
+import Connection
 
 
-class Neuron(object):
+class Neuron:
     
     """ 
     Neuron:
     =======
     A Neuron with Inputs and Outputs. 
-    Storages in self.__ios.
+    Storages in self._ios.
     
       Functions:
         __init__: 
@@ -37,12 +37,15 @@ class Neuron(object):
     def set_input_connection(self,connection,index):#Tested!
         self.__ios[0][index] = connection
 
-        self.__ios[0][index]._set_input(self)
-
+        self.__ios[0][index].set_input(self)
+    
+    def set_output_connection(self,connection,index):
+        self.__ios[1][index]  = connection
+        self.__ios[1][index].set_input(self)
 
         
 
-    def _set_input(self,v,i):#Tested!
+    def set_input(self,v,i):#Tested!
        self.__ios[0][i] = v
  
        
@@ -62,7 +65,7 @@ class Neuron(object):
         return self.__func(self.__sum())
 
         
-    def _get_outputs(self):
+    def get_outputs(self):
         return self.__ios[1]
     
         
@@ -71,8 +74,18 @@ class Neuron(object):
         for i in range(0,len(self.__ios[1])):
             self.__ios[1][i].set_input(res)
         self.__network.isExecuted(self)
-    def add_Input(self,con): #Add a new Input Connection to the Network #TODO TESTING!!!
-        self.__ios[0] = np.array(self.__ios[0] + con,dtype=np.object)
-        return len(self.__ios[0])-1
-    def add_Output(self,con): #Add a new 
         
+    def add_Input(self,con): #Add a new Input Connection to the Network #TODO TESTING!!!
+        self.__ios[0] = np.array(self.__ios[0], con,dtype=np.object)
+        return len(self.__ios[0])-1
+    
+    def add_Output(self,con): #Add a new  Output Connection to the Network  #TODO Testing!!!
+        
+        self.__ios[0] = np.array(self.__ios[1],con)
+        print(self.__ios[1])
+        return len(self.__ios[1])
+    
+    
+
+    
+    

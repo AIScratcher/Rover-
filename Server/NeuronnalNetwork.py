@@ -20,7 +20,7 @@ class NeuronalNetwork(object):
 
 
     def build(self,neurons,inputs,outputs): #Build a new NeuronalNetwork
-    	"""
+        """
     	neurons: Count of Neurons in the Network
     	inputs: Count of the Input Neurons in the Network (Not a part of the neurons-Count) 
     	outputs: Count of the Output Neurons in the Network (Not a part of the neurons-Count)
@@ -70,6 +70,10 @@ class NeuronalNetwork(object):
     	return self.__out_values
     def __loop(self,i):
         #Code runs every iteration
+        """
+        1.Set Inputs to self.__inp_values
+        2.Activate the Input Neurons
+        """
         
 
 
