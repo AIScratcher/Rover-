@@ -8,6 +8,7 @@ class Neuron(object);
 """
 
 import numpy as np
+import Connenction
 
 
 class Neuron(object):
@@ -21,8 +22,8 @@ class Neuron(object):
       Functions:
         __init__: 
             self: Object
-            inp: Index of Input-Connections
-            outp: Index of Output-Connections
+            inp: Count of Input-Connections
+            outp: Count of Output-Connections
     """
     def __init__(self,inp,outp):#Tested!
         io = [[],[]]
@@ -31,7 +32,7 @@ class Neuron(object):
         for i in range(0,outp):
             io[1].append(0)
         self.__ios = np.array(io,dtype=np.object) 
-        self.__act_count = 0 #If this == len(self.__ios[0]) execute run()
+
         
     def set_input_connection(self,connection,index):#Tested!
         self.__ios[0][index] = connection
@@ -43,11 +44,9 @@ class Neuron(object):
 
     def _set_input(self,v,i):#Tested!
        self.__ios[0][i] = v
-       self.__activate()
  
        
     def __func(self,x):#Tested!
-
         #TODO sigmoid durch softmax ersetzen ( bessere Funktion ) 
         #Wikipedia: https://en.wikipedia.org/wiki/Softmax_function
         #YT: https://www.youtube.com/watch?v=xRJCOz3AfYY&list=PL2-dafEMk2A7mu0bSksCGMJEmeddU_H4D
@@ -61,15 +60,19 @@ class Neuron(object):
     
     def __get_result(self):#__get_result
         return self.__func(self.__sum())
+
         
     def _get_outputs(self):
         return self.__ios[1]
     
-    def __activate(self,index):
-       self.__act_count += 1
-       if self.__act_count == len(self.__ios[0]):
-           self.run()
         
     def run(self):
-        self.__ios[1] = self.__get_result()
+        res = self.__get_result()
+        for i in range(0,len(self.__ios[1])):
+            self.__ios[1][i].set_input(res)
+        self.__network.isExecuted(self)
+    def add_Input(self,con): #Add a new Input Connection to the Network #TODO TESTING!!!
+        self.__ios[0] = np.array(self.__ios[0] + con,dtype=np.object)
+        return len(self.__ios[0])-1
+    def add_Output(self,con): #Add a new 
         

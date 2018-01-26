@@ -61,7 +61,7 @@ class Connection (object):
 
 
     
-    def _connect_(self):
+    def _connect_(self): #A Data transfer between IN- and OUTPUT
         if self.isWorking == True:
             o = self.__input._get_outputs()
         
