@@ -24,15 +24,29 @@ class Neuron:
             self: Object
             inp: Count of Input-Connections
             outp: Count of Output-Connections
+     Class Variablen:
+         self.using: The Count of uses in the last 1000 loops
+         self.__ios: The np Array of Input and Output Connections
+         self.__network: The NeuronalNetwork where the Neuron is in.
+        
     """
-    def __init__(self,inp,outp):#Tested!
+    
+    
+    
+    def __init__(self,inp,outp,net):#Tested!
         io = [[],[]]
         for i in range(0,inp):
             io[0].append(0)
         for i in range(0,outp):
             io[1].append(0)
         self.__ios = np.array(io,dtype=np.object) 
+        self.__network = net
+        self.using = 0
+        self.__got_input_value = np.zeros(len(self.__ios[1])-1,dtype=np.int16) #Array of Inputs Neuron got
 
+        
+        
+        
         
     def set_input_connection(self,connection,index):#Tested!
         self.__ios[0][index] = connection
@@ -47,7 +61,12 @@ class Neuron:
 
     def set_input(self,v,i):#Tested!
        self.__ios[0][i] = v
+       self.activate(i)
+       
+       
+       
  
+    
        
     def __func(self,x):#Tested!
         #TODO sigmoid durch softmax ersetzen ( bessere Funktion ) 
@@ -61,30 +80,56 @@ class Neuron:
             sum += self.__ios[0][i]
         return sum
     
-    def __get_result(self):#__get_result
+    def __get_result(self):#
         return self.__func(self.__sum())
+    
+    
+    
 
         
     def get_outputs(self):
-        return self.__ios[1]
+        return self.__res
     
+    def resetUsing(self): #Logic by ANN
+        self.using = 0
         
-    def run(self):
-        res = self.__get_result()
-        for i in range(0,len(self.__ios[1])):
-            self.__ios[1][i].set_input(res)
+    def run(self):#Test
+        self.__res = self.__get_result()
         self.__network.isExecuted(self)
+        self.using += 1
+        for i in self.__ios[1]:
+            i._connect_()
+    
+    
+    
+    
+    def activate(self,index):
+        self.__got_input_value[index] = 1
+        act_inputs = 0
+        for i in self.__got_input_value:
+            act_inputs  += i
+        if  act_inputs >=  ((len(self.__got_input_value)+1)/4)*3:
+            self.run()
+            
+         
+        
+        
+        
+        
         
     def add_Input(self,con): #Add a new Input Connection to the Network #TODO TESTING!!!
-        self.__ios[0] = np.array(self.__ios[0], con,dtype=np.object)
-        return len(self.__ios[0])-1
+        self.__ios[0] = np.array((self.__ios[0],con),dtype=np.object)
+
     
     def add_Output(self,con): #Add a new  Output Connection to the Network  #TODO Testing!!!
         
-        self.__ios[0] = np.array(self.__ios[1],con)
+        self.__ios[0] = np.array((self.__ios[1],con),dtype=np.object)
         print(self.__ios[1])
-        return len(self.__ios[1])
     
+    
+    
+    
+
     
 
     
