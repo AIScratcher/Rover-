@@ -58,8 +58,11 @@ class Connection (object):
         self.__output = outp
         if not (self.__input == -1):
             self.isWorking = True
-
-
+            
+    def output_Neuron(self):
+        return self.__output
+    def input_Neuron(self):
+        return self.__input
     
     def _connect_(self): #A Data transfer between IN- and OUTPUT
         if self.isWorking == True:

@@ -14,10 +14,19 @@ class Data(object):
     
     def __init__(self,net): #net := The Neuronal Network
         self.__network = net
-        self.__network.stop()
+        
         
     def save_txt(self): # Generate a String and save them in a txt
-        self.__text =  self.__network.getTime() + ","
+        """
+        TXT CODE:
+            1.Time in the Network.
+            2.Neurons (A number (Only for Identification in Saving file.) + Using + last Outputs
+            3.Inputs (A number + Using + lastOutputs)
+            4.Outputs (A number + Using + lastOutputs)
+            4.Connections (Number of Input + Number of Output + Weigth + Output Index)
+        """
+        self.__network.stop() #Stops the Network for saving and starts again after.
+        self.__text =  self.__network.getTime() + "," + "<Counts>" + "<Neurons>" + self.__network.
         
     def save_csv(self): # Generate a CSV (Comma-separated values) and save them on Disk.
         

@@ -24,14 +24,21 @@ class Neuron:
             self: Object
             inp: Count of Input-Connections
             outp: Count of Output-Connections
+     Class Variablen:
+         self.using: The Count of uses in the last 1000 loops
+         self.__ios: The np Array of Input and Output Connections
+         self.__network: The NeuronalNetwork where the Neuron is in.
+        
     """
-    def __init__(self,inp,outp):#Tested!
+    def __init__(self,inp,outp,net):#Tested!
         io = [[],[]]
-        for i in range(0,inp):
+        for i in range(0,inp-1):
             io[0].append(0)
-        for i in range(0,outp):
+        for i in range(0,outp-1):
             io[1].append(0)
         self.__ios = np.array(io,dtype=np.object) 
+        self.__network = net
+        self.using = 0
 
         
     def set_input_connection(self,connection,index):#Tested!
@@ -40,9 +47,10 @@ class Neuron:
         self.__ios[0][index].set_input(self)
     
     def set_output_connection(self,connection,index):
-        self.__ios[1][index]  = connection
-        self.__ios[1][index].set_input(self)
-
+        if index < len(self.__ios[1]):
+            self.__ios[1][index] = connecion
+            self.__ios[0][index].set_input(self)
+                
         
 
     def set_input(self,v,i):#Tested!
@@ -61,29 +69,35 @@ class Neuron:
             sum += self.__ios[0][i]
         return sum
     
-    def __get_result(self):#__get_result
+    def __get_result(self):#
         return self.__func(self.__sum())
 
         
     def get_outputs(self):
-        return self.__ios[1]
+        return self.__res
     
-        
-    def run(self):
-        res = self.__get_result()
-        for i in range(0,len(self.__ios[1])):
-            self.__ios[1][i].set_input(res)
+    def get_connections(self,io=True): #For Path following.
+        if io = True:
+            return self.__ios[1]
+        else:
+            return self.__ios[0]
+    
+    def resetUsing(self): #Logic by ANN
+        self.using = 0
+    def run(self):#Test
+        self.__res = self.__get_result()
         self.__network.isExecuted(self)
         
+        
     def add_Input(self,con): #Add a new Input Connection to the Network #TODO TESTING!!!
-        self.__ios[0] = np.array(self.__ios[0], con,dtype=np.object)
-        return len(self.__ios[0])-1
+        self.__ios[0] = np.array((self.__ios[0],con),dtype=np.object)
+
     
     def add_Output(self,con): #Add a new  Output Connection to the Network  #TODO Testing!!!
         
-        self.__ios[0] = np.array(self.__ios[1],con)
+        self.__ios[0] = np.array((self.__ios[1],con),dtype=np.object)
         print(self.__ios[1])
-        return len(self.__ios[1])
+
     
     
 
