@@ -6,23 +6,12 @@ import Connection
 import Memory
 
 class NeuronalNetwork(object):
-    
+    """
+    The class of an Neuronal Network,
+    explaind in  NeuronalesNetwerk..odt
     
     """
-	INIT-Plan:
-    
-        1.Build the Neurons 
-        2.Define Input and Output Neurons
-        3.Connect from the Input to the Output over (Number of Neurons/Input Neurons)
-    RUN-Plan:
-        If a Connection 
-	"""
     def build(self,neurons,inputs,outputs,datatype="txt"):
-        """
-    	neurons: Count of Neurons in the Network
-    	inputs: Count of the Input Neurons in the Network (Not a part of the neurons-Count) 
-    	outputs: Count of the Output Neurons in the Network (Not a part of the neurons-Count)
-    	"""
     	#Generate Neurons
     	hidden = [] 
     	for i in range(0,neurons):#Hidden
@@ -39,8 +28,7 @@ class NeuronalNetwork(object):
     	#Inputs with the same number of hidden (First Layer...)
     	for i in range(0,len(self.__neurons[0])):
     		connection = Connection.Connection(self,inp=self.__neurons[0][i],outp=self.__neurons[1][i])
-
-    	self.__run(neurons	/ inp *10)
+            
     	self.__inp_values = np.zeros(inputs)
     	self.__out_values = np.zeros(outputs)
         
