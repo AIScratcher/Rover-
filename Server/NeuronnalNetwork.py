@@ -6,6 +6,7 @@ import Input_Neuron
 import Connection
 import Memory
 
+<<<<<<< HEAD
 
 
 
@@ -40,6 +41,40 @@ class NeuronalNetwork(object):
     	
     #def load(self,data): 
         
+=======
+class NeuronalNetwork(object):
+    """
+    The class of an Neuronal Network,
+    explaind in  NeuronalesNetwerk..odt
+    
+    """
+    def build(self,neurons,inputs,outputs,datatype="txt"):
+    	#Generate Neurons
+    	hidden = [] 
+    	for i in range(0,neurons):#Hidden
+    		hidden.append(Neuron.Neuron(1,1))#First Connections
+    	inp = []
+    	for i in range(0,inputs):
+    		inp.append(Input_Neuron.Input_Neuron(1))
+    	outp = []
+    	for i in range(0,outputs):
+    		outp.append(Neuron.Neuron(1,1))
+
+    	self.__neurons = np.array((inp,hidden,outp),dtype=np.object)
+    	#Connect:
+    	#Inputs with the same number of hidden (First Layer...)
+    	for i in range(0,len(self.__neurons[0])):
+    		connection = Connection.Connection(self,inp=self.__neurons[0][i],outp=self.__neurons[1][i])
+            
+    	self.__inp_values = np.zeros(inputs)
+    	self.__out_values = np.zeros(outputs)
+        
+        self.__datatype = datatype #Datatype: Type of the File 
+    	return selfs
+
+    def load(self,data): #Load a old NeuronalNetwork
+    
+>>>>>>> 202b6a2a57ac0bd7d80f60e5142e4b1b1a8c7079
     def __run(self,i):
         
         #Start Iterations
@@ -68,6 +103,7 @@ class NeuronalNetwork(object):
         3.Wait for the activation of the Outputs
         """
         #1.Set the Inputs to self.__inp_values
+<<<<<<< HEAD
         for i in range(0,len(self.__neurons[0])):
             self.__neurons[0][i].set_input(self.__inp_values[i]) #Input_Neurons
         
@@ -78,6 +114,19 @@ class NeuronalNetwork(object):
     def save():
         data = Memory.Data()
         data.save_txt()
+=======
+        #2.Activate the Neurons
+        for i in range(0,len(self.__neurons[0])):
+            self.__neurons[0][i].set_input(self.__inp_values[i]) #Input_Neurons
+        #3.Wait for the activation of the Outputs
+        
+        
+        
+        
+        
+    def save():
+        data = Memory.Data()
+>>>>>>> 202b6a2a57ac0bd7d80f60e5142e4b1b1a8c7079
         
         
 

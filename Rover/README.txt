@@ -1,1 +1,0 @@
-Programme die auf dem Rover laufen

@@ -30,6 +30,12 @@ class Neuron:
          self.__network: The NeuronalNetwork where the Neuron is in.
         
     """
+<<<<<<< HEAD
+=======
+    
+    
+    
+>>>>>>> 202b6a2a57ac0bd7d80f60e5142e4b1b1a8c7079
     def __init__(self,inp,outp,net):#Tested!
         io = [[],[]]
         for i in range(0,inp-1):
@@ -39,7 +45,14 @@ class Neuron:
         self.__ios = np.array(io,dtype=np.object) 
         self.__network = net
         self.using = 0
+<<<<<<< HEAD
+=======
+        self.__got_input_value = np.zeros(len(self.__ios[1])-1,dtype=np.int16) #Array of Inputs Neuron got
+>>>>>>> 202b6a2a57ac0bd7d80f60e5142e4b1b1a8c7079
 
+        
+        
+        
         
     def set_input_connection(self,connection,index):#Tested!
         self.__ios[0][index] = connection
@@ -55,7 +68,12 @@ class Neuron:
 
     def set_input(self,v,i):#Tested!
        self.__ios[0][i] = v
+       self.activate(i)
+       
+       
+       
  
+    
        
     def __func(self,x):#Tested!
         #TODO sigmoid durch softmax ersetzen ( bessere Funktion ) 
@@ -71,11 +89,15 @@ class Neuron:
     
     def __get_result(self):#
         return self.__func(self.__sum())
+    
+    
+    
 
         
     def get_outputs(self):
         return self.__res
     
+<<<<<<< HEAD
     def get_connections(self,io=True): #For Path following.
         if io = True:
             return self.__ios[1]
@@ -84,9 +106,34 @@ class Neuron:
     
     def resetUsing(self): #Logic by ANN
         self.using = 0
+=======
+    def resetUsing(self): #Logic by ANN
+        self.using = 0
+        
+>>>>>>> 202b6a2a57ac0bd7d80f60e5142e4b1b1a8c7079
     def run(self):#Test
         self.__res = self.__get_result()
         self.__network.isExecuted(self)
+        self.using += 1
+        for i in self.__ios[1]:
+            i._connect_()
+    
+    
+    
+    
+    def activate(self,index):
+        self.__got_input_value[index] = 1
+        act_inputs = 0
+        for i in self.__got_input_value:
+            act_inputs  += i
+        if  act_inputs >=  ((len(self.__got_input_value)+1)/4)*3:
+            self.run()
+            
+         
+        
+        
+        
+        
         
         
     def add_Input(self,con): #Add a new Input Connection to the Network #TODO TESTING!!!
@@ -97,8 +144,15 @@ class Neuron:
         
         self.__ios[0] = np.array((self.__ios[1],con),dtype=np.object)
         print(self.__ios[1])
+<<<<<<< HEAD
 
+=======
+>>>>>>> 202b6a2a57ac0bd7d80f60e5142e4b1b1a8c7079
     
+    
+    
+    
+
     
 
     
