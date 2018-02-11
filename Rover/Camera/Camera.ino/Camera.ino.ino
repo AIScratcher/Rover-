@@ -1,7 +1,7 @@
 #include "SoftwareSerial.h"
 #include <VC0706_UART.h>
 #include <SPI.h>
-#define SS_SD  10
+//#define SS_SD  10
 bool canSnap = false;
 //use software serial
 SoftwareSerial cameraconnection(2,3);//Rx, Tx
@@ -59,12 +59,12 @@ void snapShot()
          uint8_t bytesToRead = min(32, jpglen);
          buffer = cam.readPicture(bytesToRead);     
          picture[jpglen] = buffer;
-         //Serial.print("Read ");  Serial.print(bytesToRead, DEC); Serial.println(" bytes");
          jpglen -= bytesToRead;   
     } 
-    imgFile.close();
-    time = millis() - time;
-    Serial.print(picture);
+
+    for(int i = 0;i < picture.length();i++) {
+      Serial.print(picture[i],DEC);
+    }
     cam.resumeVideo();    
 }
 

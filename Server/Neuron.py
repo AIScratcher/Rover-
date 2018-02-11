@@ -30,12 +30,12 @@ class Neuron:
          self.__network: The NeuronalNetwork where the Neuron is in.
         
     """
-<<<<<<< HEAD
-=======
+
+
     
     
     
->>>>>>> 202b6a2a57ac0bd7d80f60e5142e4b1b1a8c7079
+
     def __init__(self,inp,outp,net):#Tested!
         io = [[],[]]
         for i in range(0,inp-1):
@@ -45,10 +45,8 @@ class Neuron:
         self.__ios = np.array(io,dtype=np.object) 
         self.__network = net
         self.using = 0
-<<<<<<< HEAD
-=======
         self.__got_input_value = np.zeros(len(self.__ios[1])-1,dtype=np.int16) #Array of Inputs Neuron got
->>>>>>> 202b6a2a57ac0bd7d80f60e5142e4b1b1a8c7079
+
 
         
         
@@ -97,7 +95,6 @@ class Neuron:
     def get_outputs(self):
         return self.__res
     
-<<<<<<< HEAD
     def get_connections(self,io=True): #For Path following.
         if io = True:
             return self.__ios[1]
@@ -106,11 +103,9 @@ class Neuron:
     
     def resetUsing(self): #Logic by ANN
         self.using = 0
-=======
-    def resetUsing(self): #Logic by ANN
-        self.using = 0
         
->>>>>>> 202b6a2a57ac0bd7d80f60e5142e4b1b1a8c7079
+
+        
     def run(self):#Test
         self.__res = self.__get_result()
         self.__network.isExecuted(self)
@@ -144,10 +139,6 @@ class Neuron:
         
         self.__ios[0] = np.array((self.__ios[1],con),dtype=np.object)
         print(self.__ios[1])
-<<<<<<< HEAD
-
-=======
->>>>>>> 202b6a2a57ac0bd7d80f60e5142e4b1b1a8c7079
     
     
     

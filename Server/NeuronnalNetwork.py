@@ -6,7 +6,7 @@ import Input_Neuron
 import Connection
 import Memory
 
-<<<<<<< HEAD
+
 
 
 
@@ -41,7 +41,7 @@ class NeuronalNetwork(object):
     	
     #def load(self,data): 
         
-=======
+
 class NeuronalNetwork(object):
     """
     The class of an Neuronal Network,
@@ -74,7 +74,7 @@ class NeuronalNetwork(object):
 
     def load(self,data): #Load a old NeuronalNetwork
     
->>>>>>> 202b6a2a57ac0bd7d80f60e5142e4b1b1a8c7079
+
     def __run(self,i):
         
         #Start Iterations
@@ -103,7 +103,6 @@ class NeuronalNetwork(object):
         3.Wait for the activation of the Outputs
         """
         #1.Set the Inputs to self.__inp_values
-<<<<<<< HEAD
         for i in range(0,len(self.__neurons[0])):
             self.__neurons[0][i].set_input(self.__inp_values[i]) #Input_Neurons
         
@@ -114,7 +113,7 @@ class NeuronalNetwork(object):
     def save():
         data = Memory.Data()
         data.save_txt()
-=======
+
         #2.Activate the Neurons
         for i in range(0,len(self.__neurons[0])):
             self.__neurons[0][i].set_input(self.__inp_values[i]) #Input_Neurons
@@ -126,7 +125,7 @@ class NeuronalNetwork(object):
         
     def save():
         data = Memory.Data()
->>>>>>> 202b6a2a57ac0bd7d80f60e5142e4b1b1a8c7079
+
         
         
 
