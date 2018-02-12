@@ -1,0 +1,14 @@
+Ein Durchlauf von NN. ( Berrechnung von 100 Neurons):
+    
+
+
+
+
+
+
+Wenn Neuron n baut neue Verbindung:
+    i = n
+    Wiederhole bis x: //x später Definieren
+        i = Output der stärksten  Verbindung von i ( altes i)
+    End Wiederholung
+    generiere neue Verbindung zwischen n und i
