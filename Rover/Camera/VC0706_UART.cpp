@@ -265,7 +265,7 @@ uint8_t* VC0706::readPicture(uint8_t length)
     return vcBuff;
 #endif
 }
-
+f vg
 boolean VC0706::motionDetected(void) 
 {
     if (_read(4, 200) != 4) {

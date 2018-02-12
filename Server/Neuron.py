@@ -30,19 +30,23 @@ class Neuron:
          self.__network: The NeuronalNetwork where the Neuron is in.
         
     """
+
+
     
     
     
+
     def __init__(self,inp,outp,net):#Tested!
         io = [[],[]]
-        for i in range(0,inp):
+        for i in range(0,inp-1):
             io[0].append(0)
-        for i in range(0,outp):
+        for i in range(0,outp-1):
             io[1].append(0)
         self.__ios = np.array(io,dtype=np.object) 
         self.__network = net
         self.using = 0
         self.__got_input_value = np.zeros(len(self.__ios[1])-1,dtype=np.int16) #Array of Inputs Neuron got
+
 
         
         
@@ -54,9 +58,10 @@ class Neuron:
         self.__ios[0][index].set_input(self)
     
     def set_output_connection(self,connection,index):
-        self.__ios[1][index]  = connection
-        self.__ios[1][index].set_input(self)
-
+        if index < len(self.__ios[1]):
+            self.__ios[1][index] = connecion
+            self.__ios[0][index].set_input(self)
+                
         
 
     def set_input(self,v,i):#Tested!
@@ -90,8 +95,16 @@ class Neuron:
     def get_outputs(self):
         return self.__res
     
+    def get_connections(self,io=True): #For Path following.
+        if io = True:
+            return self.__ios[1]
+        else:
+            return self.__ios[0]
+    
     def resetUsing(self): #Logic by ANN
         self.using = 0
+        
+
         
     def run(self):#Test
         self.__res = self.__get_result()
@@ -112,6 +125,7 @@ class Neuron:
             self.run()
             
          
+        
         
         
         
