@@ -1,0 +1,18 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Mon Feb 12 18:34:50 2018
+
+@author: SFZ_Laptop_013
+"""
+
+
+Anfangssituation des Neuronalen Networks:
+for Schleife:
+    Input Neuron verbunden mit Hidden Neuron 
+    Jedes Hidden Neuron ist mit zwei  Hidden Neuronen verbunden 
+    
+for (Untersuchen der weights)
+    if weight einer Hidden Verbindung = wird nicht oft benutzt: 
+            break nicht mehr benutzt
+            
+                    jede Verbindung gilt für sich selber!
