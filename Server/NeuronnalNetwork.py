@@ -8,7 +8,7 @@ import Memory
 class NeuronalNetwork(object):
     """
     The class of an Neuronal Network,
-    explaind in  NeuronalesNetwerk..odt
+    explained in  NeuronalesNetwerk..odt
     
     """
     def build(self,neurons,inputs,outputs,datatype="txt"):
