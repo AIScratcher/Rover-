@@ -45,7 +45,7 @@ class NeuronalNetwork(object):
 class NeuronalNetwork(object):
     """
     The class of an Neuronal Network,
-    explaind in  NeuronalesNetwerk..odt
+    explained in  NeuronalesNetwerk..odt
     
     """
     def build(self,neurons,inputs,outputs,datatype="txt"):
@@ -70,21 +70,25 @@ class NeuronalNetwork(object):
     	self.__out_values = np.zeros(outputs)
         
         self.__datatype = datatype #Datatype: Type of the File 
-    	return selfs
+    	return self
 
     def load(self,data): #Load a old NeuronalNetwork
     
 
     def __run(self,i):
         
-        #Start Iterations
-        self.__time = int(0)
-        while(True): 
-            self.__loop(i)
-            self.__time += 1
-            if self.finish == True:
-            	break
-        return 0
+
+    
+    def __new_connection_for(self,neuron,x):
+        i = n 
+        for j in range(1,x):
+            i = n.get_connections()
+            highest_weigth = i[0]
+            for k in range(1,len(i)):
+                
+            i = i[]
+        
+        
     
     def getTime(self):
         return self.__time
@@ -94,22 +98,7 @@ class NeuronalNetwork(object):
 
     def get_outputs(self):
     	return self.__out_values
-    def __loop(self,waiting_time):
-        #Code runs every iteration
-        """
-        1.Set Inputs to self.__inp_values
-        1.2. Clear the isExecuted Array.
-        2.Activate the Input Neurons
-        3.Wait for the activation of the Outputs
-        """
-        #1.Set the Inputs to self.__inp_values
-        for i in range(0,len(self.__neurons[0])):
-            self.__neurons[0][i].set_input(self.__inp_values[i]) #Input_Neurons
-        
-        #2.Activate the Inputs
-        
-    def 
-        
+
     def save():
         data = Memory.Data()
         data.save_txt()

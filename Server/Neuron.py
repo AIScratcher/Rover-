@@ -95,17 +95,17 @@ class Neuron:
     def get_outputs(self):
         return self.__res
     
-    def get_connections(self,io=True): #For Path following.
-        if io = True:
+    def get_connections(self,out=True): #For Path following.
+        if out == True:
             return self.__ios[1]
         else:
             return self.__ios[0]
     
     def resetUsing(self): #Logic by ANN
         self.using = 0
-        
 
         
+            
     def run(self):#Test
         self.__res = self.__get_result()
         self.__network.isExecuted(self)

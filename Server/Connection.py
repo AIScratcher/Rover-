@@ -61,6 +61,10 @@ class Connection (object):
             
     def output_Neuron(self):
         return self.__output
+    
+    def _get_Weigth(self):
+        return self.__w
+    
     def input_Neuron(self):
         return self.__input
     
@@ -69,7 +73,7 @@ class Connection (object):
             o = self.__input.get_outputs()
         
             #Update of the Weigths
-            self.__w -= (self.__net.getTime - self.__last_activation)
+            self.__w -= (self.__ net.getTime -  self.__last_activation)
             self.__last_activation = net.getTime()
             self.__w += 1
 
