@@ -5,6 +5,7 @@ Created on Fri Jan 26 17:59:04 2018
 @author: JG
 """
 
+
 import numpy as  np
 import Neuron 
 import Connection

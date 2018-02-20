@@ -5,41 +5,6 @@ import Neuron
 import Input_Neuron
 import Connection
 import Memory
-
-
-
-
-
-
-
-
-
-
-class NeuronalNetwork(object):
-    
-    
-    """
-	INIT-Plan:
-    
-        1.Build the Neurons 
-        2.Define Input and Output Neurons
-        3.Connect from the Input to the Output over (Number of Neurons/Input Neurons)
-    RUN-Plan:
-        If a Connection 
-	"""
-    def build(self,inputs,outputs,datatype="txt"):
-        """
-    	inputs: Count of the Input Neurons in the Network 
-    	outputs: Count of the Output Neurons in the Network 
-    	"""
-        io = [[],[]]
-        for i in range(0,inputs):
-            io[0].append(Input_Neuron.Input_Neuron(outputs,self))
-        for i in range(0,outputs):
-            io[1].append(Neuron.Neuron(outputs/2,1,self))
-        
-    	
-    #def load(self,data): 
         
 
 class NeuronalNetwork(object):

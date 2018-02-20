@@ -2,13 +2,13 @@
 """
 Created on Mon Oct  9 17:33:12 2017
  
-@author: JG
+@author: JG,Annika
 
 class Neuron(object);
 """
 
-import numpy as np
-import Connection
+import numpy as np 
+#import Connection
 
 
 class Neuron:
@@ -44,8 +44,8 @@ class Neuron:
             io[1].append(0)
         self.__ios = np.array(io,dtype=np.object) 
         self.__network = net
-        self.using = 0
-        self.__got_input_value = np.zeros(len(self.__ios[1])-1,dtype=np.int16) #Array of Inputs Neuron got
+        self.__t_neuron = net.getTime()
+        self.__got_input_value = np.zeros((len(self.__ios[1]))) #Array of Inputs Neuron got
 
 
         
@@ -74,10 +74,26 @@ class Neuron:
     
        
     def __func(self,x):#Tested!
-        #TODO sigmoid durch softmax ersetzen ( bessere Funktion ) 
-        #Wikipedia: https://en.wikipedia.org/wiki/Softmax_function
-        #YT: https://www.youtube.com/watch?v=xRJCOz3AfYY&list=PL2-dafEMk2A7mu0bSksCGMJEmeddU_H4D
-        return x/(np.sqrt(1 + x**2))
+        """
+        Activationfunction
+        ===================
+        Structure:
+        1.x = sig(x) = 1/(1 + e^-x) #sigmoid function
+        2.s = t_neuron / t_net      
+        3.x = H(x) = { 1: x > s, 0: x  <= s} #Heavside 
+        4.return x
+        
+        """
+        x = 1/(1 + np.e**-x)
+        #s = self.__t_neuron / self.__network.getTime()
+        s =  1020 / 1021 #Only for tests
+        
+        if x > s:
+            return 1
+        elif x <= s:
+            return 0
+        
+        
     
     def __sum(self):#Tested
         sum = float()
@@ -100,16 +116,13 @@ class Neuron:
             return self.__ios[1]
         else:
             return self.__ios[0]
-    
-    def resetUsing(self): #Logic by ANN
-        self.using = 0
 
         
             
     def run(self):#Test
         self.__res = self.__get_result()
         self.__network.isExecuted(self)
-        self.using += 1
+        self.t_neuron = self.__network.getTime()
         for i in self.__ios[1]:
             i._connect_()
     

@@ -1,4 +1,7 @@
-
+"""
+@version 0.1
+@author JG
+"""
 
 import numpy as np
 import Neuron 
