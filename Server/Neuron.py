@@ -45,6 +45,7 @@ class Neuron:
         self.__ios = np.array(io,dtype=np.object) 
         self.__network = net
         self.__t_neuron = net.getTime()
+        self.__using = 0
         self.__got_input_value = np.zeros((len(self.__ios[1]))) #Array of Inputs Neuron got
 
 
@@ -85,8 +86,7 @@ class Neuron:
         
         """
         x = 1/(1 + np.e**-x)
-        #s = self.__t_neuron / self.__network.getTime()
-        s =  1020 / 1021 #Only for tests
+        s = (self.__using / self.__network.getTime()) / self.__t_neuron #Must talk about this again.
         
         if x > s:
             return 1
@@ -111,7 +111,7 @@ class Neuron:
     def get_outputs(self):
         return self.__res
     
-    def get_connections(self,out=True): #For Path following.
+    def get_connections(self,out=True): #For Path following at NeuronalNetwork.py
         if out == True:
             return self.__ios[1]
         else:
@@ -123,6 +123,7 @@ class Neuron:
         self.__res = self.__get_result()
         self.__network.isExecuted(self)
         self.t_neuron = self.__network.getTime()
+        self.__using += 1
         for i in self.__ios[1]:
             i._connect_()
     
@@ -140,7 +141,8 @@ class Neuron:
          
         
         
-        
+    def reset_Using(self):
+        self.__using = 0
         
         
         
