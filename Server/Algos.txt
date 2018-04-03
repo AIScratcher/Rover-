@@ -1,6 +1,7 @@
 Ein Durchlauf von NN. ( Berrechnung von 100 Neurons):
-    
-
+ Speichere die Outputs zwischen
+ Update die Inputs
+ Sortiere die Neurons in a b und c 
 
 
 
