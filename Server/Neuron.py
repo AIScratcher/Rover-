@@ -46,7 +46,7 @@ class Neuron:
         self.__network = net
         self.__t_neuron = net.getTime()
         self.__got_input_value = np.zeros((len(self.__ios[1]))) #Array of Inputs Neuron got
-
+        self.__using = 0
 
         
         
@@ -73,7 +73,7 @@ class Neuron:
  
     
        
-    def __func(self,x):#Tested!
+    def _func(self,x):#Tested!
         """
         Activationfunction
         ===================
@@ -85,8 +85,7 @@ class Neuron:
         
         """
         x = 1/(1 + np.e**-x)
-        #s = self.__t_neuron / self.__network.getTime()
-        s =  1020 / 1021 #Only for tests
+        s = (self.__using  / self.__network.getTime()) 
         
         if x > s:
             return 1
@@ -96,10 +95,10 @@ class Neuron:
         
     
     def __sum(self):#Tested
-        sum = float()
+        s = float()
         for i in range(0,len(self.__ios[0])):
-            sum += self.__ios[0][i]
-        return sum
+            s += self.__ios[0][i]
+        return s
     
     def __get_result(self):#
         return self.__func(self.__sum())
@@ -150,7 +149,7 @@ class Neuron:
     
     def add_Output(self,con): #Add a new  Output Connection to the Network  #TODO Testing!!!
         
-        self.__ios[0] = np.array((self.__ios[1],con),dtype=np.object)
+        self.__ios[0] = np.concat()
         print(self.__ios[1])
     
     

@@ -26,7 +26,7 @@ class Data(object):
             4.Connections (Number of Input + Number of Output + Weigth + Output Index)
         """
         self.__network.stop() #Stops the Network for saving and starts again after.
-        self.__text =  self.__network.getTime() + "," + "<Counts>" + "<Neurons>" + self.__network.
+        self.__text =  self.__network.getTime() + "," + "<Counts>" + "<Neurons>" + self.__network.getNeuron_Len()
         
     def save_csv(self): # Generate a CSV (Comma-separated values) and save them on Disk.
         
