@@ -2,95 +2,68 @@
 """
 Created on Tue Apr  3 18:44:51 2018
 
-@author: SFZ_Laptop_012
+@author: aiscratch
+@version: 0.0.5
 """
 import numpy as np
-
-class Neuron(object):
-    """
-        A Neuron is just this set of values:
-        float: Theta
-        float : Psi
-        list : inputs:
-        inputs : 0 : W of f
-        inputs : 1 : W of c
-        inputs : 2 : W of b
-        inputs : 3 : N of f
-        inputs : 4 : N of c
-        inputs : 5 : N of b
-        Theta and Psi are Treshholds
-        And the list inputs is the storage of the Input
-        That's just 6 values who are just the w of the input
-        And after that is the size of the (!)connected fields
-
-    """
-    def __init__(self,input_f,input_c,input_b,
-                theta=np.random.uniform(0.01),
-                psi=np.random.uniform(0.01)):
-                self.theta, self.psi,self.tresh_pool_c = theta,psi,
-                np.random.uniform(0.01)
-                #Define inputs and fill it temporaly
-                #with the whole inhibition area
-                self.inputs = [input_f + input_c + input_b]
-                #Then initilize the connections by telling them that we will be
-                #her output
-                for i in self.inputs:
-                    i.set_output(self)
-                #The inputs will now store the values seen above
-                self.inputs = [0,0,0,0,0,0]
-                self.output = 0 #Last activation value
-
-
-    #If you want to execute a Neuron totaly there are 3 Steps, wich will execute
-    #the Layer if it has enough data for this step
-    #1.Feedforward predicting
-    #2.Context pooling
-    #3.Feedback pooling
-    #Because each step must run with the whole Layer it's split about 3
-    # diffrent methods called by the Layer if it's ready
-    #For better explenation see the README.md in the Server directory
-
-    #1.Feedforward predicting
-    def r_predicting(feedforward_w,feedforward_n):
-        if feedforward_w / feedforward_n > self.theta: #First Treshold
-            self.output = 1
-        else:
-            self.output = 0
-        return
-    #2.Context pooling
-    def r_c_pooling(context_w,context_n):
-        #This will only execute if the output is 1
-        #Pooling is the process of learning a specific template in the inputs
-        #First test if the output and the context are good
-        if context_w / context_n > self.tresh_pool_c:
-            #The Context said: Yes we also think thats rigth what you said
-            #You can try to decrement a little
-            self.theta -= 0.045 #Random number but smaller as the number in else
-        else:
-            #The Context said you are wrong you must be more critical:
-            #Increment the theta
-            self.theta += 0.1
-    #3.Feedback pooling
-    def r_b_pooling(feedback_w,feedback_n):
-        #Do the same but now work with the tresh_pool_c
-        #Now we use a const, the lambada, I'm not lucky with this solution
-        #but before this will work in a large scale that and many more things
-        #in the theory must be fixed
-        #Again that will just execute if the output is 1
-        if feedback_w / feedback_n > self.lambada:
-            #Again slow down to a perfect value and never stand at one point
-            self.tresh_pool_c -= 0.034
-        else:
-            self.tresh_pool_c += 0.7
-        #Feedback Pooling is slower and not so fast changing how the context
-
-
-
-
+from Neuron import Neuron
+from Connection import Connection
 class Layer (object):
     """
     Layer is the processing group
     of Neurons
     ==============================
-
+    It contains one row of neurons that work all on the same
+    input space, the Layer under and beyond and thereself .
+    Every Neuron will predicte and pool together when the Layer  said it's rigth
     """
+
+    def size(self): #Returns the size of the Layer
+        return len(self.__neurons)
+
+    def get_neurons(self):
+        return self:__neurons
+
+    def set_output(self,output_layer):
+        #The network can't build all layers at once. So it's possible that the
+        #output layer doesn't exsist by executing init
+        self.__output_layer = output_layer
+
+
+    def __init__(self,count_neurons,input_layer,output_layer):
+        self.__output_layer = output_layer
+        self.__input_layer = input_layer
+        self.__neurons = []
+        self.__count_neurons = count_neurons
+        # Do nothing until the network ( the largest authority in the system wants)
+        # that the neurons will generate.
+
+    def build_layer(self):
+        ## NOTE:
+        #Don't execute this before building the input layer and not until
+        #the output layer is at least set
+
+        #Instance the input field f_field
+
+        #Define two percente of the input space as impossible to connect
+        #and do so with everything else
+        len_input_layer = self.__input_layer.size()
+        two_percent_of_input  = int(( len_input_layer/100 )* 2)
+        #Find two_percent_of_input times random numbers and add them to
+        #not_inhibition_area
+        not_inhibition_area = []
+        while len(not_inhibition_area) < two_percent_of_input :
+            rand_number = int(np.random.uniform(0,len_input_layer))
+            if not rand_number in not_inhibition_area:
+                not_inhibition_area.append(rand_number)
+        #Build the Neuron
+        #Build the connections from the neurons of the input layer
+        f_field = []
+        f_neurons = self.__input_layer.get_neurons()
+        for i in range(0,len(f_neurons)):
+            if not i in not_inhibition_area:
+                f_field += Connection(0,f_neurons[i])
+
+        del len_input_layer, f_neurons, two_percent_of_input, not_inhibition_area,rand_number
+
+        #Instance the context field c_field

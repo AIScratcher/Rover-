@@ -1,21 +1,25 @@
 # -*- coding:utf-8 -*-
+"""
+@author: aiscratch
+@version: 0.0.1
+"""
 import numpy as np
 import pandas as pd
 
 """
 Data:
 =====
-Saves a NeuronalNetwork into a 
+Saves a NeuronalNetwork into a
 CSV or TXT Data.
 And can load them.
 """
 
 class Data(object):
-    
+
     def __init__(self,net): #net := The Neuronal Network
         self.__network = net
-        
-        
+
+
     def save_txt(self): # Generate a String and save them in a txt
         """
         TXT CODE:
@@ -27,10 +31,5 @@ class Data(object):
         """
         self.__network.stop() #Stops the Network for saving and starts again after.
         self.__text =  self.__network.getTime() + "," + "<Counts>" + "<Neurons>" + self.__network.getNeuron_Len()
-        
+
     def save_csv(self): # Generate a CSV (Comma-separated values) and save them on Disk.
-        
-        
-        
-    
-         
