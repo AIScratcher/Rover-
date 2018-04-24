@@ -38,32 +38,31 @@ class Layer (object):
         # Do nothing until the network ( the largest authority in the system wants)
         # that the neurons will generate.
 
-    def build_layer(self):
-        ## NOTE:
-        #Don't execute this before building the input layer and not until
-        #the output layer is at least set
+    #These three functions will build the entire Neuron and
+    #will also be executed
+    def build_input(self,f_field):
+        #f_field is a list of connections connected as input with the last
+        #
 
         #Instance the input field f_field
 
         #Define two percente of the input space as impossible to connect
         #and do so with everything else
-        len_input_layer = self.__input_layer.size()
-        two_percent_of_input  = int(( len_input_layer/100 )* 2)
+        len_input = len(f_field)
+        two_percent_of_input  = int(( len_input/100 )* 2)
         #Find two_percent_of_input times random numbers and add them to
         #not_inhibition_area
         not_inhibition_area = []
         while len(not_inhibition_area) < two_percent_of_input :
-            rand_number = int(np.random.uniform(0,len_input_layer))
+            rand_number = int(np.random.uniform(0,len_input))
             if not rand_number in not_inhibition_area:
                 not_inhibition_area.append(rand_number)
         #Build the Neuron
         #Build the connections from the neurons of the input layer
         f_field = []
-        f_neurons = self.__input_layer.get_neurons()
+        f_neurons = self.__input.get_neurons()
         for i in range(0,len(f_neurons)):
             if not i in not_inhibition_area:
                 f_field += Connection(0,f_neurons[i])
 
-        del len_input_layer, f_neurons, two_percent_of_input, not_inhibition_area,rand_number
-
-        #Instance the context field c_field
+        del len_input, f_neurons, two_percent_of_input, not_inhibition_area,rand_number

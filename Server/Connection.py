@@ -38,3 +38,6 @@ class Connection(object):
             self.__outputs.inputs[type+3] -= 1
         if not self.__using == 1:
             self.__using + 0.015 # 1.5 % per every activation
+        # TODO:
+        #The using doesn't decrease over time, fix it with the
+        #help of the layer or the network 
