@@ -23,17 +23,41 @@ class Neuron(object):
         And after that is the size of the (!)connected fields
 
     """
-    def __init__(self,input_f,input_c,input_b=None,
+    def add_output_con(self,con):
+        #If a new output connection appends that will note if
+        #the output changes
+        self.__output_table.append(con)
+
+    def __init__(self,input_layer,layer,
                 theta=np.random.uniform(0.01),
                 psi=np.random.uniform(0.01)):
 
-                self.theta, self.psi,self.tresh_pool_c = theta,psi,
-                np.random.uniform(0.01)
-                #Define inputs and fill it temporaly
-                #with the whole inhibition area
-                self.inputs = [input_f + input_c + input_b]
-                #When the b isn't at this point it will note this back to the layer
-                #that again will ask for the network to note them if b is build 
+                self.theta, self.psi,self.tresh_pool_c = theta,psi,np.random.uniform(0.01) #Hyperparameters
+
+                #Select the inhibition area by select 2% of them,
+                #who will not connect to the Neuron
+
+                #Need for connecting later
+                input_layer_neurons = input_layer.get_neurons()
+                #Number of neurons not will connect as int
+                number_of_unconnected = int(input_layer.size()/50)
+                #The group of Neurons indicies in input_layer_neurons
+                unconnected_indexs = np.zeros(number_of_unconnected)
+                #Find random numbers:
+                index = 0
+                while(index < number_of_unconnected):
+                    random_number = np.int(np.random.uniform(0,
+                                            input_layer.size()))
+                    if random_number in unconnected_indexs:
+                        continue
+                    unconnected_indexs[index] = random_number
+                    index += 1
+                print(index)
+                print(unconnected_indexs[:])
+
+
+
+
 
     #If you want to execute a Neuron totaly there are 3 Steps, wich will execute
     #the Layer if it has enough data for this step
@@ -78,8 +102,3 @@ class Neuron(object):
         else:
             self.tresh_pool_c += 0.7
         #Feedback Pooling is slower and not so fast changing how the context
-
-    def set_output_con(self,con):
-        #If a new output connection appends that will note if
-        #the output changes
-        self.__output_table.append(con)

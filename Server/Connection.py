@@ -1,4 +1,4 @@
-"""
+ss"""
 @author: aiscratch
 @version: 0.0.1
 """
@@ -25,6 +25,7 @@ class Connection(object):
                 self.__input,self.__output = input,output
                 self.__tresh,self.__using = tresh,using
                 self.__connected = tresh < using
+                self.__input.add_output_con(self)
 
     def connect(self):
         #If the input changes it's input to 1 it will execute this and
@@ -40,4 +41,4 @@ class Connection(object):
             self.__using + 0.015 # 1.5 % per every activation
         # TODO:
         #The using doesn't decrease over time, fix it with the
-        #help of the layer or the network 
+        #help of the layer or the network
