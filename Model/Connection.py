@@ -1,4 +1,4 @@
-ss"""
+"""
 @author: aiscratch
 @version: 0.0.1
 """
@@ -11,15 +11,8 @@ class Connection(object):
     if the random tresh is reached by the using
 
     """
-    def set(self,neuron,type=True):
-        #If the input or the output wasn't already at init of this connection
-        #neuron is the to connecting neuron and type said if it's an input or output
-        if type == True:
-            self.__input = neuron
-        else:
-            self.__output = neuron
 
-    def __init__(self,type, input=None,output=None,tresh=np.random.uniform(0.01),
+    def __init__(self,type, input,output,tresh=np.random.uniform(0.01),
                 using=np.random.uniform(0.01)):
                 self.__type = type #Is it f or c or b connection ( usefull for connect )
                 self.__input,self.__output = input,output

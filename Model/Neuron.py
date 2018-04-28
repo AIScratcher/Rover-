@@ -4,6 +4,7 @@
 """
 
 import numpy as np
+import Connection 
 
 class Neuron(object):
     """
@@ -54,7 +55,9 @@ class Neuron(object):
                     index += 1
                 print(index)
                 print(unconnected_indexs[:])
-
+                #Connect to all Neurons ( those who are not in unconnected_indexs)
+                for index in range(0,len(input_layer_neurons)):
+                    #New Connection
 
 
 
