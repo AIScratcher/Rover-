@@ -60,7 +60,8 @@ class Neuron(object):
                     if not index in unconnected_indexs:
                         #New Connection
                         Connection.Connection(0,input_layer_neurons[index],self)
-                
+                #As next we must wait until all Neurons in the Layer has
+                #been build and then connect to the
 
 
 

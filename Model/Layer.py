@@ -30,12 +30,13 @@ class Layer (object):
         self.__input_layer = input_layer
         self.__neurons = np.zeros(count_neurons,dtype=np.object)
 
-        # Do nothing until the network ( the largest authority in the system wants)
-        # that the neurons will generate.
+
 
 
     def build_layer(self):
         for i in range(len(self.__neurons)):
             self.__neurons[i] = Neuron(self.__input_layer,self)
-            #The Neurons init will do all connections
+
+        for i in range(len(self.__neurons)):
+            #Now connect again with all 
     def after_build(self,self.__output_layer): #EXECUTE if the output_layer executes build_layer
