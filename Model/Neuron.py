@@ -34,36 +34,48 @@ class Neuron(object):
                 psi=np.random.uniform(0.01)):
 
                 self.theta, self.psi,self.tresh_pool_c = theta,psi,np.random.uniform(0.01) #Hyperparameters
+                #Connect to input_layer
+                self.__connect_to_layer(input_layer,2,0)
+                self.__input_layer, self.__layer = input_layer,layer
+
+    #Connect to the own layer
+    def build_layer(self):
+        self.__connect_to_layer(self.__layer,2,1)
+    #Connect to next layer
+    def after_build(self,output_layer):
+        self.__connect_to_layer(output_layer,2,2)
+        self.__output_layer = output_layer 
 
 
 
 
-
-                #As next we must wait until all Neurons in the Layer has
-                #been build and then connect to these
-            def __connect_to_layer(self,layer,p_not_connect,type):
-                #Connect this Neuron to a layer with a percentage of p_not_connect
-                #of unconnected neurons
-                #Need for connecting later
-                input_layer_neurons = layer.get_neurons()
-                #Number of neurons not will connect as int
-                number_of_unconnected = int(input_layer.size()/100*p_not_connect)
-                #The group of Neurons indicies in input_layer_neurons
-                unconnected_indexs = np.zeros(number_of_unconnected)
-                #Find random numbers:
-                index = 0
-                while(index < number_of_unconnected):
-                    random_number = np.int(np.random.uniform(0,
-                                            input_layer.size()))
-                    if random_number in unconnected_indexs:
-                        continue
-                    unconnected_indexs[index] = random_number
-                    index += 1
-                #Connect to all Neurons ( those who are not in unconnected_indexs)
-                for index in range(0,len(input_layer_neurons)):
-                    if not index in unconnected_indexs:
-                        #New Connection
-                        Connection.Connection(type,input_layer_neurons[index],self)
+    #Common function to connect this Neuron to a layer
+    def __connect_to_layer(self,layer,p_not_connect,type):
+        #Connect this Neuron to a layer with a percentage of p_not_connect
+        #of unconnected neurons
+        #Need for connecting later
+        input_layer_neurons = list(layer.get_neurons())
+        #If this is a connection between the same layer
+        #this Neuron should not connect to itself
+        if self in input_layer_neurons:
+            input_layer_neurons.remove(self)
+        #Number of neurons not will connect as int
+        number_of_unconnected = int(input_layer.size()/100*p_not_connect)
+        #The group of Neurons indicies in input_layer_neurons
+        unconnected_indexs = np.zeros(number_of_unconnected)
+        #Find random numbers:
+        index = 0
+        while(index < number_of_unconnected):
+            random_number = np.int(np.random.uniform(0,input_layer.size()))
+            if random_number in unconnected_indexs:
+                continue
+            unconnected_indexs[index] = random_number
+            index += 1
+        #Connect to all Neurons ( those who are not in unconnected_indexs)
+        for index in range(0,len(input_layer_neurons)):
+            if not index in unconnected_indexs:
+                #New Connection
+                Connection.Connection(type,input_layer_neurons[index],self)
 
 
 

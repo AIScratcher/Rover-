@@ -22,7 +22,7 @@ class Layer (object):
         return len(self.__neurons)
 
     def get_neurons(self):
-        return self:__neurons
+        return self.__neurons
 
 
     def __init__(self,count_neurons,input_layer,output_layer):
@@ -38,5 +38,5 @@ class Layer (object):
             self.__neurons[i] = Neuron(self.__input_layer,self)
 
         for i in range(len(self.__neurons)):
-            #Now connect again with all 
+            #Now connect again with all
     def after_build(self,self.__output_layer): #EXECUTE if the output_layer executes build_layer
