@@ -35,13 +35,19 @@ class Neuron(object):
 
                 self.theta, self.psi,self.tresh_pool_c = theta,psi,np.random.uniform(0.01) #Hyperparameters
 
-                #Select the inhibition area by select 2% of them,
-                #who will not connect to the Neuron
 
+
+
+
+                #As next we must wait until all Neurons in the Layer has
+                #been build and then connect to these
+            def __connect_to_layer(self,layer,p_not_connect,type):
+                #Connect this Neuron to a layer with a percentage of p_not_connect
+                #of unconnected neurons
                 #Need for connecting later
-                input_layer_neurons = input_layer.get_neurons()
+                input_layer_neurons = layer.get_neurons()
                 #Number of neurons not will connect as int
-                number_of_unconnected = int(input_layer.size()/50)
+                number_of_unconnected = int(input_layer.size()/100*p_not_connect)
                 #The group of Neurons indicies in input_layer_neurons
                 unconnected_indexs = np.zeros(number_of_unconnected)
                 #Find random numbers:
@@ -53,15 +59,12 @@ class Neuron(object):
                         continue
                     unconnected_indexs[index] = random_number
                     index += 1
-                print(index)
-                print(unconnected_indexs[:])
                 #Connect to all Neurons ( those who are not in unconnected_indexs)
                 for index in range(0,len(input_layer_neurons)):
                     if not index in unconnected_indexs:
                         #New Connection
-                        Connection.Connection(0,input_layer_neurons[index],self)
-                #As next we must wait until all Neurons in the Layer has
-                #been build and then connect to the
+                        Connection.Connection(type,input_layer_neurons[index],self)
+
 
 
 
