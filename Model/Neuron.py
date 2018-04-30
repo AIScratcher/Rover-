@@ -92,7 +92,7 @@ class Neuron(object):
     #For better explenation see the README.md in the Server directory
 
     #1.Feedforward predicting
-    def r_predicting(feedforward_w,feedforward_n):
+    def r_predicting(self):
         if feedforward_w / feedforward_n > self.theta: #First Treshold
             self.output = 1
             self.__output_table[:].connect()
@@ -100,7 +100,7 @@ class Neuron(object):
             self.output = 0
         return
     #2.Context pooling
-    def r_c_pooling(context_w,context_n):
+    def r_c_pooling(self):
         #This will only execute if the output is 1
         #Pooling is the process of learning a specific template in the inputs
         #First test if the output and the context are good
@@ -113,7 +113,7 @@ class Neuron(object):
             #Increment the theta
             self.theta += 0.1
     #3.Feedback pooling
-    def r_b_pooling(feedback_w,feedback_n):
+    def r_b_pooling(self):
         #Do the same but now work with the tresh_pool_c
         #Now we use a const, the lambada, I'm not lucky with this solution
         #but before this will work in a large scale that and many more things
