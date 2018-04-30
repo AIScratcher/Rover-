@@ -77,11 +77,6 @@ class Neuron(object):
                 #New Connection
                 Connection.Connection(type,input_layer_neurons[index],self)
 
-
-
-
-
-
     #If you want to execute a Neuron totaly there are 3 Steps, wich will execute
     #the Layer if it has enough data for this step
     #1.Feedforward predicting
@@ -93,7 +88,7 @@ class Neuron(object):
 
     #1.Feedforward predicting
     def r_predicting(self):
-        if feedforward_w / feedforward_n > self.theta: #First Treshold
+        if self.inputs[0] / self.inputs[3] > self.theta: #First Treshold
             self.output = 1
             self.__output_table[:].connect()
         else:
@@ -104,7 +99,7 @@ class Neuron(object):
         #This will only execute if the output is 1
         #Pooling is the process of learning a specific template in the inputs
         #First test if the output and the context are good
-        if context_w / context_n > self.tresh_pool_c:
+        if self.inputs[1] / self.inputs[4] > self.tresh_pool_c:
             #The Context said: Yes we also think thats rigth what you said
             #You can try to decrement a little
             self.theta -= 0.045 #Random number but smaller as the number in else
@@ -119,7 +114,7 @@ class Neuron(object):
         #but before this will work in a large scale that and many more things
         #in the theory must be fixed
         #Again that will just execute if the output is 1
-        if feedback_w / feedback_n > self.lambada:
+        if self.inputs[2] / self.inputs[5] > self.lambada:
             #Again slow down to a perfect value and never stand at one point
             self.tresh_pool_c -= 0.034
         else:
