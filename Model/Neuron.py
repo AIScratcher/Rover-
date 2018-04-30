@@ -44,7 +44,7 @@ class Neuron(object):
     #Connect to next layer
     def after_build(self,output_layer):
         self.__connect_to_layer(output_layer,2,2)
-        self.__output_layer = output_layer 
+        self.__output_layer = output_layer
 
 
 
@@ -60,13 +60,13 @@ class Neuron(object):
         if self in input_layer_neurons:
             input_layer_neurons.remove(self)
         #Number of neurons not will connect as int
-        number_of_unconnected = int(input_layer.size()/100*p_not_connect)
+        number_of_unconnected = int(layer.size()/100*p_not_connect)
         #The group of Neurons indicies in input_layer_neurons
         unconnected_indexs = np.zeros(number_of_unconnected)
         #Find random numbers:
         index = 0
         while(index < number_of_unconnected):
-            random_number = np.int(np.random.uniform(0,input_layer.size()))
+            random_number = np.int(np.random.uniform(0,layer.size()))
             if random_number in unconnected_indexs:
                 continue
             unconnected_indexs[index] = random_number
