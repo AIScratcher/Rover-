@@ -37,7 +37,8 @@ class Neuron(object):
                 #Connect to input_layer
                 self.__connect_to_layer(input_layer,2,0)
                 self.__input_layer, self.__layer = input_layer,layer
-
+                self.output = 0
+                
     #Connect to the own layer
     def build_layer(self):
         self.__connect_to_layer(self.__layer,2,1)

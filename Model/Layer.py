@@ -41,4 +41,11 @@ class Layer (object):
 
     def run(self):
         #1. r_predicting
-        for i in range8
+        for i in range(len(self.__neurons)):
+            self.__neurons[i].r_predicting()
+        print(self.__neurons[0].output)
+        for i in range(len(self.__neurons)):
+            self.__neurons[i].r_c_pooling()
+        for i in range(len(self.__neurons)):
+            self.__neurons[i].r_b_pooling()
+        return True
