@@ -29,14 +29,16 @@ class Layer (object):
         self.__output_layer = output_layer
         self.__input_layer = input_layer
         self.__neurons = np.zeros(count_neurons,dtype=np.object)
-
-
-
-
-    def build_layer(self):
         for i in range(len(self.__neurons)):
-            self.__neurons[i] = Neuron(self.__input_layer,self)
+            self.__neurons[i] = Neuron(self.__input_layer, self)
 
+    def after_build(self,output_layer): #EXECUTE after the output_layer inits
+        self.__output_layer = output_layer
         for i in range(len(self.__neurons)):
-            #Now connect again with all
-    def after_build(self,self.__output_layer): #EXECUTE if the output_layer executes build_layer
+            self.__neurons[i].build_layer()
+        for i in range(len(self.__neurons)):
+            self.__neurons[i].after_build(output_layer)
+
+    def run(self):
+        #1. r_predicting
+        for i in range8
