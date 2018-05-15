@@ -94,7 +94,8 @@ class Neuron(object):
             self.__output_table[:].connect()
         else:
             self.output = 0
-        return
+
+        
     #2.Context pooling
     def r_c_pooling(self):
         #This will only execute if the output is 1
@@ -108,6 +109,7 @@ class Neuron(object):
             #The Context said you are wrong you must be more critical:
             #Increment the theta
             self.theta += 0.1
+
     #3.Feedback pooling
     def r_b_pooling(self):
         #Do the same but now work with the tresh_pool_c
