@@ -47,18 +47,24 @@ void Load_Layer(size_t start,size_t end,Matrix net,Layer l)
     }
 }
 
-Matrix Layer_run(Matrix input,Layer this)
+Matrix Layer_run(Matrix Neurons,Matrix Connections)
 {
-    ///input: 3D Matrix with the 3 Types of Inputs (f,c,b), where b is the activation of the last iteration
-    ///and c is a void
-    ///Go through all Neurons , collect there inputs , compare with the using and  tresh of the connection
-    ///and compare with the tresh_1 of the Neuron. Then set last output of Neuron to 1 or 0 (last element of  the Matrix this.values.
-    Matrix neuron_spec_input = Matrix_setup(3,input.total_size/input.dims);
-    for(int i = 0; i < this.values.dims; i++)
-    {
-        neuron_spec_input.setDim(Layer_collect_inputs(input,this.values.getDim(i),0)); //1) Compare inputs with there using and tresh by ignoring those
-                                                                                      //who aren't connected.( Just for f)
-        int adr[2] = {i,this.values.total_size/this.values.dims}
-        this.values.set()
-    }
-}
+    
+    int cmd = cmd_queue.Pop();
+    int adrs = cmd_queue.Pop();
+    
+    switch (cmd) {
+	    case 1:
+			//OUTOF #ADR
+			//#ADR Column of Netwok Matrix 
+			//GET w,n,t
+			
+			int adrs = {adrs,0};
+			int w = net.get(adrs,net);
+			adrs[1]++;
+			int n = net.get(adrs,net);
+			adrs[1]++;
+			int t = net.get(adrs,net);
+			
+
+
