@@ -2,9 +2,9 @@
 #include <stdio.h>
 int main(void) {
 	List L;
-	L.append(1);
-	L.append(2);
-	printf("%d", L.remove());//1
-	prinf("%d", L.remove());//2
+	L.append(1,L);
+	L.append(2,L);
+	printf("%d", L.remove(L));//1
+	printf("%d", L.remove(L));//2
 	return 0;
 }

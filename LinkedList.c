@@ -23,7 +23,7 @@ void List_append(int key,List l) {
 }
 int List_remove(List l) {
 	int key = l.head->key;
-	l.head = &l.head->next;
+	l.head = l.head->next;
 	return key;
 }
 
