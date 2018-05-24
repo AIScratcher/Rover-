@@ -1,6 +1,6 @@
 /*
  *	Author: Joris Gutjahr
- *	A Layer receives a Matrix as input an 
+ *	A Layer receives a Matrix as input an
  *	computes the binary output as Matrix.
  *
  */
@@ -37,7 +37,7 @@ Matrix Layer_run(Matrix input,Layer l) {
 	//The second aren't set now
 	int outputs[l.size];//Output Array
 	for(int i = 0;i < l.size;i++) {
-		//Each column is a Neurons tresholds
-		
+		//Compare the inputs with the inhebition area.
+
 	}
 }

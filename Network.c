@@ -4,7 +4,7 @@
 
 /*
  * Author: Joris Gutjahr
- * This File containes all elements of a good Neural Network 
+ * This File containes all elements of a good Neural Network
  * totaly represented in a Matrix.
  * To do so I make a Matrix:
  * Where each column is the full description of a Neuron:
@@ -14,8 +14,8 @@
  * 	#1 Type (0=f,1=c,2=b)
  * 	#2 w
  * 	#3 t
- * #3 Indicies of Elements in the input Matrix the Neuron doesn't have 
- * connections to, they will be ignored 
+ * #3 Indicies of Elements in the input Matrix the Neuron doesn't have
+ * connections to, they will be ignored
  * #4 Number of the Layer
  *
  */
@@ -44,8 +44,8 @@ struct Network_hyp setup_Network(int layers,int neurons_per_layer) {
 		h.Network.set(adr,0.5,h.Network);
 		adr[1] = 2;
 		h.Network.set(adr,0.5,h.Network);
-		adr[1] = 0;	
+		adr[1] = 0;
 	}
-	//Make inhibition ignore 
+	//Make inhibition ignore
 }
-
+Matrix Mask_Layer_output(Layer L,)
