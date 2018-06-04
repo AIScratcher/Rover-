@@ -46,9 +46,24 @@ public:
   T get(uint index) {
     return atIndex(index)->value;
   }
-  int insert(uint,Node<T>);
-  void append(Node<T>);
-  Node<T> pop();
+  void insert(uint index,T newv) {
+     Node<T>* new_node = new Node<T>();
+     new_node->value = newv;
+     Node<T>* next = atIndex(index);
+     if(next != NULL)
+        new_node->next = next;
+     else
+        tail = new_node;
+     total++;
+  }
+  void append(T newv) {
+    insert(total,newv);
+  }
+  T pop() {
+    T value = head->value;
+    head = head->next;
+    return value;
+  }
 };
 
 //Test
