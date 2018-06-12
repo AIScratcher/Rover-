@@ -1,6 +1,7 @@
-#include <stdio.h> //TODO remove printf by std::cout << and this line by
+#include <iostream> //TODO remove printf by std::cout << and this line by
                   //#include <iostream>
-
+#ifndef __LINKED_LIST__
+#define __LINKED_LIST__
 typedef unsigned int uint;
 template <typename T>
 class Node {
@@ -23,8 +24,9 @@ public:
     head = new Node<T>;
     tail = head;
     for(uint i = 1;i < length;i++) {
-      tail->next = tail;
-      tail = new Node<T>;
+      Node<T>* c = new Node<T>;
+      tail->next = c;
+      tail = c;
     }
   }
   Node<T>* atIndex(uint index) {
@@ -65,17 +67,6 @@ public:
     return value;
   }
 };
+#endif
 
-//Test
-
-int main(void) {
-  List<int> l = List<int>(100); //List with length 5
-  uint lastNumber = 2;
-  for(uint i = 0;i < 99;i++) {
-    lastNumber *= lastNumber;
-    l.set(i,lastNumber);
-    printf("%d\n",l.get(i));
-  };
-  printf("\n");
-  return 0;
-}
+ 

@@ -21,7 +21,7 @@ int main(void) {
   int i = 100;
   while(i < 0) {
     q.push(0);
-    std::cout << q.pop();
+    std::cout << ;
     i++;
   }
   return 0;
